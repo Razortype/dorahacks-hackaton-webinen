@@ -1,0 +1,96 @@
+
+.header__box {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 170px;
+    background-image: url("https://preview.redd.it/7sejizlj7y691.png?auto=webp&s=c7977690b8e68a28f445df02d4eb7a704af009e1");
+    background-size: cover;
+    margin: 0 auto;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.header__filter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(57, 1, 31, 0.5);
+    padding: 0 20px;
+}
+
+.header__content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header__square {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: #24F996;
+    transform: translate(-50%, -50%) rotate(-135deg);
+    box-shadow: rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px, rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;
+}
+
+.square-1 {
+    z-index: 2;
+    top: 80%;
+    left: 100%;
+}
+
+.square-2 {
+    width: 40px;
+    height: 40px;
+    top: 0;
+    left: 0;
+}
+
+.square-3 {
+    width: 30px;
+    height: 30px;
+    top: 35%;
+    left: 0;
+}
+
+.header__content h1 {
+    margin: 0;
+    font-size: 5rem;
+    -webkit-text-stroke: 2px #21d983;
+    color: transparent;
+    text-align: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+}
+
+@media only screen and (max-width: 576px) {
+    .header__box {
+        width: 100%;
+        height: 100px;
+    }
+
+    .header__content h1 {
+        font-size: 2rem;
+    }
+
+    .header__square {
+        width: 30px;
+        height: 30px;
+    }
+}

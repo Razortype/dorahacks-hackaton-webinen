@@ -1,0 +1,101 @@
+.sidebar__section {
+    position: relative;
+    width: 300px;
+    height: 100%;
+    background: url(../../assets/webticket.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 50px 150px;
+
+}
+
+.sidebar__title {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    color: #22FA96;
+    text-align: center;
+    letter-spacing: 5px;
+    text-shadow: 0 2px 2px #22FA96, 
+        -2px 5px 1px #000, 
+        -4px 8px 0px #18af69, 
+        -6px 11px 0px #11814d;
+}
+
+#ton-connect-button > div > button {
+    width: 100%;
+    justify-content: center;
+    color: #202250;
+    background-color: #22FA96;
+}
+
+#ton-connect-button > div > button > div {
+    font-size: 1.1rem;
+    color: #202250;
+}
+
+#ton-connect-button > div > button > svg > * {
+    fill: #202250;
+}
+
+#ton-connect-button > div > div > button {
+    width: 100%;
+}
+
+.nav__item {
+    border: 1px solid #202250 !important;
+}
+.bg-nav {
+    color: #202250 !important;
+    background-color: #22FA96 !important;
+}
+
+.bg-nav:hover {
+    color: black !important;
+    background-color: #1dc878 !important;
+}
+
+#tc-dropdown-container {
+    left: 0 !important;
+}
+
+#tc-dropdown-container > div {
+    background: #000;
+    height: auto;
+}
+
+.sidemenu__close__button {
+    padding: 0px 20px !important;
+    font-size: 2rem !important;
+    position: absolute;
+    top: 1%;
+    right: 1%;
+    color: #F24872 !important;
+    background-color: #202250 !important;
+    border: 2px solid #202250 !important;
+}
+
+@media only screen and (max-width: 576px) {
+
+    .sidebar__section{
+        display: block !important;
+        width: 100% !important;
+        position: absolute;
+        z-index: 99;
+    }
+
+    .sidebar__title {
+        font-size: 3rem;
+    }
+
+    #ton-connect-button {
+        margin: auto !important;
+        justify-content: center !important;
+        width: 70%;
+    }
+
+    .sidemenu__navlinks {
+        margin: auto !important;
+        width: 75%;
+    }
+}

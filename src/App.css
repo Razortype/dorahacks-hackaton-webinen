@@ -1,0 +1,22 @@
+.App {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    background-color: #202250;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.scroll__sidemenu__button {
+    position: absolute;
+    padding: 0px 20px !important;
+    font-size: 2.5rem !important;
+    top: 0;
+    right: 1%;
+    color: black !important;
+    background-color: #29F796 !important;
+    z-index: 2;
+}
