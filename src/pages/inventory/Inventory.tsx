@@ -7,8 +7,7 @@ interface InventoryProps {
 
 }
 
-
-
+const TicketData = []
 const Inventory: FC<InventoryProps> = ({}) => {
     
     const data = [
