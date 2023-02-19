@@ -1,22 +1,22 @@
 import { Row, Col, Container, Image, Table } from "react-bootstrap";
 import "./singleCard.css";
 import React, { FC, useState } from "react";
-
+import HomepageEventModal from "./HomepageEventModal";
 
 interface CardProps {
-  id: number,
-  name: string,
-  event_image: string,
-  description: string,
-  capacity: number
-  location: string,
-  creater_wallet_address: string,
-  contract_address: string,
-  ticket_price: number
-  duration: number,
-  date: Date,
-  created_at: Date,
-  updated_at: Date
+  id: number;
+  name: string;
+  event_image: string;
+  description: string;
+  capacity: number;
+  location: string;
+  creater_wallet_address: string;
+  contract_address: string;
+  ticket_price: number;
+  duration: number;
+  date: Date;
+  created_at: Date;
+  updated_at: Date;
 }
 
 const SingleCard: FC<CardProps> = ({
@@ -34,6 +34,10 @@ const SingleCard: FC<CardProps> = ({
   created_at,
   updated_at,
 }) => {
+  const [show, setShow] = useState<boolean>(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <Col
       xs={12}
@@ -43,30 +47,33 @@ const SingleCard: FC<CardProps> = ({
       <Image
         src="ticket.png"
         fluid
-        className="border border-1 rounded-2 object-fit-cover"
+        className="border border-2 rounded-2 object-fit-cover"
+        onClick={handleShow}
       />
       {/*beautiful font, max length and readable date informations*/}
-
-      <Table className="table table-dark table-striped">
+{/* 
+      <Table className="table table-dark table-striped mb-0">
         <thead>
           <tr>
-            <th scope="col"><h5 className="text-center m-2">{name}</h5></th>
+            <th scope="col">
+              <h5 className="text-center m-2">{name}</h5>
+            </th>
           </tr>
         </thead>
-        <tbody className="align-bottom">
-          <tr>
+        <tbody className="align-bottom overflow-hidden">
+           <tr>
             <td className="text-center">{description}</td>
           </tr>
           <tr>
             <td className="text-center">{capacity}</td>
-          </tr>
+          </tr> 
           <tr>
             <td className="text-center">{location}</td>
           </tr>
           <tr>
             <td className="text-center">{creater_wallet_address}</td>
           </tr>
-          <tr> 
+          <tr>
             <td className="text-center">{contract_address}</td>
           </tr>
           <tr>
@@ -76,13 +83,44 @@ const SingleCard: FC<CardProps> = ({
             <td className="text-center">{duration}</td>
           </tr>
           <tr>
+            <td className="text-center">{date.toString()}</td>
+          </tr>
+          <tr>
             <td className="text-center">{created_at.toString()}</td>
           </tr>
           <tr>
             <td className="text-center">{updated_at.toString()}</td>
           </tr>
+          <tr>
+            <td className="text-center rounded-bottom">
+              <button
+                className="btn btn-primary"
+                onClick={handleShow}
+                type="button"
+              >
+                More
+              </button>
+            </td>
+          </tr>
         </tbody>
-      </Table>
+      </Table>  */}
+      <HomepageEventModal
+        id={id}
+        name={name}
+        event_image={event_image}
+        description={description}
+        capacity={capacity}
+        location={location}
+        creater_wallet_address={creater_wallet_address}
+        contract_address={contract_address}
+        ticket_price={ticket_price}
+        duration={duration}
+        date={date}
+        created_at={created_at}
+        updated_at={updated_at}
+        show={show}
+        handleClose={handleClose}
+      />
     </Col>
   );
 };

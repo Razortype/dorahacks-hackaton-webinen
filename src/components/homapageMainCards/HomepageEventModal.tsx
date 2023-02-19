@@ -1,23 +1,23 @@
 import React, {FC} from "react";
 import {Button, Modal, Image, Row, Col} from 'react-bootstrap';
-import './HomePageTicketModel.css';
+import './HomepageEventModal.css';
 
 interface HomepageEventModalProps{
-    id: number,
-    name: string,
-    event_image: string,
-    description: string,
-    capacity: number
-    location: string,
-    creater_wallet_address: string,
-    contract_address: string,
-    ticket_price: number
-    duration: number,
-    date: Date,
-    created_at: Date,
-    updated_at: Date,
-    show: any,
-    handleClose: any
+    id: number;
+    name: string;
+    event_image: string;
+    description: string;
+    capacity: number;
+    location: string;
+    creater_wallet_address: string;
+    contract_address: string;
+    ticket_price: number;
+    duration: number;
+    date: Date;
+    created_at: Date;
+    updated_at: Date;
+    show: any;
+    handleClose: any;
 }
 
 const HomepageEventModal: FC<HomepageEventModalProps> = ({
@@ -35,8 +35,8 @@ const HomepageEventModal: FC<HomepageEventModalProps> = ({
     created_at,
     updated_at,
     show,
-    handleClose
-  }) => {
+    handleClose }) => {
+    
     return ( <Modal
         aria-labelledby="contained-modal-title-vcenter"
         centered
@@ -69,3 +69,5 @@ const HomepageEventModal: FC<HomepageEventModalProps> = ({
             </Modal.Footer>
         </Modal>)
 }
+
+export default HomepageEventModal;

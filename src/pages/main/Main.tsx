@@ -13,7 +13,7 @@ const eventDatas = [
     {
         "id": 2,
         "name": "Test Event 2",
-        "event_image": "http://127.0.0.1:8000/media/images/Color_Palette.png",
+        "event_image": "https://ipfs.io/ipfs/QmaqYKhFLRnnyVQLu5uYMuzvMgFFSiXA1udW6aEjCrgcNd",
         "description": "Test Description Test Description Test Description Test Description Test Description Test Description\r\nTest Description Test Description Test Description Test Description Test Description Test Description\r\nTest Description Test Description Test Description Test Description Test Description Test Description",
         "capacity": 43,
         "location": "https://goo.gl/maps/5f4fBpRh89CcoqXo8",
@@ -28,7 +28,7 @@ const eventDatas = [
     {
         "id": 1,
         "name": "Test Event",
-        "event_image": "http://127.0.0.1:8000/media/images/webticket.png",
+        "event_image": "https://ipfs.io/ipfs/QmaqYKhFLRnnyVQLu5uYMuzvMgFFSiXA1udW6aEjCrgcNd",
         "description": "Test Description Test Description Test Description Test Description Test Description Test Description\r\nTest Description Test Description Test Description Test Description Test Description Test Description\r\nTest Description Test Description Test Description Test Description Test Description Test Description",
         "capacity": 25,
         "location": "https://goo.gl/maps/5f4fBpRh89CcoqXo8",
