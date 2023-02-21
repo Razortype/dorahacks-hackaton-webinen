@@ -5,7 +5,7 @@ import "./upperCards.css"
 const UpperCards= () => {
     
     return (
-        <Container className="p-3">
+        <Container className="p-1">
                 {/* create 3 cards first vard wiil placed first columng 1 and 2. rows and other cards right of card1 one of bottom other top*/}
                 <Row className="p-3 ">
                     <Col xs={12} lg={8} >
