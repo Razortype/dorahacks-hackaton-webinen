@@ -8,8 +8,8 @@ import QRCode from "react-qr-code";
 
 interface CardDetailModalProps {
     NFTId: number;
-    NFTAddress: string;
-    tonPrice: number;
+    NFTAddress: URL;
+    tonPrice: string;
     show: any;
     handleClose: any;
 };
@@ -34,7 +34,7 @@ const CardDetailModal: FC<CardDetailModalProps> = ({NFTId, NFTAddress, tonPrice,
             <Image src="ticket.png" fluid/>
 
             <div className="text-center my-3">
-                {returnNFTQR(NFTAddress)}
+                {returnNFTQR(NFTAddress.toString())}
             </div>
 
             <Row>
@@ -42,7 +42,7 @@ const CardDetailModal: FC<CardDetailModalProps> = ({NFTId, NFTAddress, tonPrice,
                     <h4 className="mb-0">#{NFTId}</h4>
                 </Col>
                 <Col xs={4} className="vertically-centered text-center">
-                    <Button href={NFTAddress}>Ticket</Button>
+                    <Button href={NFTAddress.toString()}>Ticket</Button>
                 </Col>
                 <Col xs={4} className="vertically-centered">
                     <p className="display-6 m-0 p-2">${tonPrice} </p>

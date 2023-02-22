@@ -6,20 +6,42 @@ import CardDetailModal from "../carddetailmodal/CardDetailModal";
 
 import './CustomCard.css';
 
-interface CustomCardProps {
-    index: number,
-    title: string;
+interface IEvent {
+    id: number;
+    name: string;
+    event_image: string;
     description: string;
-    date: Date;
-    NFTId: number;
-    NFTAddress: string;
-    tonPrice: number;
-    purchaseTime: Date;
-    expired: boolean;
-    used: boolean;
+    capacity: number;
+    location: string;
+    creater_wallet_address: string;
+    contract_address: string;
+    ticket_price: string;
+    duration: number;
+    date: string;
+    created_at: string;
+    updated_at: string;
+} // event_image, location, date, created_at, updated_at => ll be converted
+
+interface IAttr {
+    trait_type: string,
+    value: string,
 }
 
-const CustomCard: FC<CustomCardProps> = ({index, title, description, date, NFTId, NFTAddress, tonPrice, purchaseTime, expired, used}) => {
+interface CustomCardProps {
+    index: number;
+    id: number,
+    event: IEvent;
+    ipfs_url: URL;
+    nft_id: number;
+    ton_price: string;
+    used: boolean;
+    expired: boolean;
+    created_at: Date;
+    updated_at: Date;
+    attrs: Array<IAttr>
+}
+
+const CustomCard: FC<CustomCardProps> = ({index, id, event, ipfs_url, nft_id, ton_price, used, expired, created_at, updated_at, attrs}) => {
     
     const [show, setShow] = useState<boolean>(false);
     const handleClose = () => setShow(false);
@@ -31,7 +53,7 @@ const CustomCard: FC<CustomCardProps> = ({index, title, description, date, NFTId
                 <div className="card__rectangle" />
                 <Card.Body>
                     <Card.Title className="card__title d-flex flex-sm-column flex-lg-row justify-content-between">
-                        {title}
+                        {event.name}
                     </Card.Title>
                     
                     <Card.Text>
@@ -41,11 +63,11 @@ const CustomCard: FC<CustomCardProps> = ({index, title, description, date, NFTId
                                 <ListGroup className="card__list__group" variant="flush">
                                     <ListGroup.Item>
                                         <h5><b>Description:</b></h5>
-                                        {description}</ListGroup.Item>
+                                        {event.description}</ListGroup.Item>
                                     <ListGroup.Item>
                                         <h5>Dates</h5>
-                                        <b>Event Date :</b> {date.toString()} <br />
-                                        <b>Purchased Date :</b> {purchaseTime.toString()}
+                                        <b>Event Date :</b> {event.date.toString()} <br />
+                                        <b>Purchased Date :</b> {created_at.toString()}
                                     </ListGroup.Item>
                                     <ListGroup.Item>
                                         <ul className="m-0 p-0  d-flex flex-row">
@@ -58,7 +80,7 @@ const CustomCard: FC<CustomCardProps> = ({index, title, description, date, NFTId
                             <Col xs={2} lg={2}>
                                 <div className="card__price">
                                     <div>
-                                        {tonPrice} TON COIN
+                                        {ton_price} TON COIN
                                     </div>
                                 </div>
                             </Col>
@@ -71,7 +93,7 @@ const CustomCard: FC<CustomCardProps> = ({index, title, description, date, NFTId
                     
                 </Card.Body>
             </Card>
-            <CardDetailModal NFTId={NFTId} NFTAddress={NFTAddress} tonPrice={tonPrice} show={show} handleClose={handleClose}/>
+            <CardDetailModal NFTId={nft_id} NFTAddress={ipfs_url} tonPrice={ton_price} show={show} handleClose={handleClose}/>
         </>
     );
 };
