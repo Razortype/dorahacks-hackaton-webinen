@@ -121,7 +121,7 @@ const HomepageEventModal: FC<HomepageEventModalProps> = ({
                 {" "}
                 <div className="d-flex justify-content-between">
                   <p className="  text-start">Location</p>{" "}
-                  <p className="">{location}</p>
+                  <p className=""><a href={location}>{location}</a></p>
                 </div>
               </td>
             </tr>

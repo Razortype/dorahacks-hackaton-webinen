@@ -1,4 +1,5 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
+import axios from "axios";
 import "./Main.css";
 
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
@@ -7,135 +8,17 @@ import SingleCard from "../../components/homapageMainCards/singleCard";
 
 interface MainProps {}
 
-const eventDatas = [
-  {
-    id: 2,
-    name: "Test Event 2",
-    event_image:
-      "https://ipfs.io/ipfs/QmaqYKhFLRnnyVQLu5uYMuzvMgFFSiXA1udW6aEjCrgcNd",
-    description:
-      "Test Description Test Description Test Description Test Description Test Description Test Description\r\nTest Description Test Description Test Description Test Description Test Description Test Description\r\nTest Description Test Description Test Description Test Description Test Description Test Description",
-    capacity: 43,
-    location: "https://goo.gl/maps/5f4fBpRh89CcoqXo8",
-    creater_wallet_address: "qweQEqweqwe13231Asd",
-    contract_address: "qweQWEqweqWeasdqWEa123",
-    ticket_price: 0.003,
-    duration: 120,
-    date: "2023-02-26T09:30:00+03:00",
-    created_at: "2023-02-19T15:21:03.189139+03:00",
-    updated_at: "2023-02-19T15:21:03.189156+03:00",
-  },
-  {
-    id: 1,
-    name: "Test Event",
-    event_image:
-      "https://ipfs.io/ipfs/QmaqYKhFLRnnyVQLu5uYMuzvMgFFSiXA1udW6aEjCrgcNd",
-    description:
-      "Test Description Test Description Test Description Test Description Test Description Test Description\r\nTest Description Test Description Test Description Test Description Test Description Test Description\r\nTest Description Test Description Test Description Test Description Test Description Test Description",
-    capacity: 25,
-    location: "https://goo.gl/maps/5f4fBpRh89CcoqXo8",
-    creater_wallet_address: "qweQEqweqwe13231Asd",
-    contract_address: "qweQWEqweqWeasdqWEa123",
-    ticket_price: 0.003,
-    duration: 60,
-    date: "2023-02-25T18:00:00+03:00",
-    created_at: "2023-02-19T14:25:45.814374+03:00",
-    updated_at: "2023-02-19T15:20:57.837505+03:00",
-  },
-  {
-    id: 3,
-    name: "Test Event",
-    event_image:
-      "https://ipfs.io/ipfs/QmaqYKhFLRnnyVQLu5uYMuzvMgFFSiXA1udW6aEjCrgcNd",
-    description:
-      "Test Description Test Description Test Description Test Description Test Description Test Description\r\nTest Description Test Description Test Description Test Description Test Description Test Description\r\nTest Description Test Description Test Description Test Description Test Description Test Description",
-    capacity: 25,
-    location: "https://goo.gl/maps/5f4fBpRh89CcoqXo8",
-    creater_wallet_address: "qweQEqweqwe13231Asd",
-    contract_address: "qweQWEqweqWeasdqWEa123",
-    ticket_price: 0.003,
-    duration: 60,
-    date: "2023-02-25T18:00:00+03:00",
-    created_at: "2023-02-19T14:25:45.814374+03:00",
-    updated_at: "2023-02-19T15:20:57.837505+03:00",
-  },
-];
-
 const Main: FC<MainProps> = ({}) => {
-  const data = [
-    {
-      title: "Example Event Name",
-      description:
-        "Example event description for event. Example event description for event. Example event description for event. Example event description for event.",
-      date: new Date(628021800000), // epoch timstamp
-      NFTId: 5122212,
-      NFTAddress: "https://ton.nft.address.com/5122212/example",
-      tonPrice: 5,
-      purchaseTime: new Date(628021800000),
-      expired: false,
-      used: false,
-    },
-    {
-      title: "Example Event Name",
-      description:
-        "Example ev ription for event. Example event description for event. Example event description for event. Example event description for event.",
-      date: new Date(628021800000), // epoch timstamp
-      NFTId: 5122212,
-      NFTAddress: "https://ton.nft.address.com/5122212/example",
-      tonPrice: 5,
-      purchaseTime: new Date(628021800000),
-      expired: false,
-      used: false,
-    },
-    {
-      title: "Example Event Name",
-      description:
-        "Example even ription for event. Example event description for event. Example event description for event. Example event description for event.",
-      date: new Date(628021800000), // epoch timstamp
-      NFTId: 5122212,
-      NFTAddress: "https://ton.nft.address.com/5122212/example",
-      tonPrice: 0.005,
-      purchaseTime: new Date(628021800000),
-      expired: false,
-      used: false,
-    },
-    {
-      title: "Example Event Name",
-      description:
-        "Example event ription for event. Example event description for event. Example event description for event. Example event description for event.",
-      date: new Date(628021800000), // epoch timstamp
-      NFTId: 5122212,
-      NFTAddress: "https://ton.nft.address.com/5122212/example",
-      tonPrice: 0.005,
-      purchaseTime: new Date(628021800000),
-      expired: false,
-      used: false,
-    },
-    {
-      title: "Example Event Name",
-      description:
-        "Example event description for event. Example event description for event. Example event description for event. Example event description for event.",
-      date: new Date(628021800000), // epoch timstamp
-      NFTId: 5122212,
-      NFTAddress: "https://ton.nft.address.com/5122212/example",
-      tonPrice: 0.005,
-      purchaseTime: new Date(628021800000),
-      expired: false,
-      used: false,
-    },
-    {
-      title: "Example Event Name",
-      description:
-        "Example event description for event. Example event description for event. Example event description for event. Example event description for event.",
-      date: new Date(628021800000), // epoch timstamp
-      NFTId: 5122212,
-      NFTAddress: "https://ton.nft.address.com/5122212/example",
-      tonPrice: 0.005,
-      purchaseTime: new Date(628021800000),
-      expired: false,
-      used: false,
-    },
-  ];
+
+  const [events, setEvents] = useState([])
+  useEffect(() => {
+    axios.get("http://razortype.pythonanywhere.com/api/events/all/?format=json")
+    .then((response: any) => {
+      setEvents(response.data)
+      console.log(response.data)
+    })
+    .catch((e) => alert(e))
+  }, [])
 
   return (
     <div className="w-100">
@@ -145,7 +28,7 @@ const Main: FC<MainProps> = ({}) => {
           <h1 style={{ color: "#22FA96" }}>Latest Events 🔥</h1>
         </Row>
         <Row className="pt-1 pb-3 justify-content-around">
-          {eventDatas
+          {events
             .slice(0, 3)
             .map(
               (
@@ -190,7 +73,7 @@ const Main: FC<MainProps> = ({}) => {
           <h1 style={{ color: "#FC4191" }}>Hurry Up! ⏳</h1>
         </Row>
         <Row className="p-3 justify-content-around">
-          {eventDatas
+          {events
             .slice(0, 3)
             .map(
               (

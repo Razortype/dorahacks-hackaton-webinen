@@ -1,3 +1,4 @@
 .single__card {
     width: 350px !important;
+    cursor: pointer;
 }

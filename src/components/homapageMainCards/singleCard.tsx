@@ -45,7 +45,7 @@ const SingleCard: FC<CardProps> = ({
       className="single__card border border-1 m-2 p-0 border border-1 rounded-2"
     >
       <Image
-        src="ticket.png"
+        src={event_image}
         fluid
         className="border border-2 rounded-2 object-fit-cover"
         onClick={handleShow}

@@ -41,9 +41,6 @@ const CardDetailModal: FC<CardDetailModalProps> = ({NFTId, NFTAddress, tonPrice,
                 <Col xs={4} className="vertically-centered text-center">
                     <h4 className="mb-0">#{NFTId}</h4>
                 </Col>
-                <Col xs={4} className="vertically-centered text-center">
-                    <Button href={NFTAddress.toString()}>Ticket</Button>
-                </Col>
                 <Col xs={4} className="vertically-centered">
                     <p className="display-6 m-0 p-2">${tonPrice} </p>
                     <Image src="coin.png" width={40} height={40}/>
