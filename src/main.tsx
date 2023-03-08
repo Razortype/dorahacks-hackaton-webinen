@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
+import { RecoilRoot } from 'recoil'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -13,7 +14,9 @@ const manifestUrl = "https://raw.githubusercontent.com/ton-community/tutorials/m
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <TonConnectUIProvider manifestUrl={manifestUrl}>
       <BrowserRouter>
-        <App />
+        <RecoilRoot>
+          <App />
+        </RecoilRoot>
       </BrowserRouter>
   </TonConnectUIProvider>
 )
