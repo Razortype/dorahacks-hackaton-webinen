@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect,createContext } from 'react'
 import './App.css'
 import { Route, Routes } from 'react-router-dom'
 
@@ -7,18 +7,32 @@ import Main from './pages/main/Main'
 import Welcome from './pages/testpage/TestPage'
 import Inventory from './pages/inventory/Inventory'
 import { Button } from 'react-bootstrap'
+import useConnectionStore from './store/connection-store/useConnectionStore'
+
+export const EnvContext = createContext({
+  isSandbox: false,
+  isTestnet: false,
+});
 
 function App() {
-
+  const { connectOnLoad } = useConnectionStore();
     const [show,setShow] = useState(true);
 
     useEffect(() => {
         window.innerWidth < 576 && setShow(false);
     },[]);
+    useEffect(() => {
+      connectOnLoad();
+    }, []);
 
   return (
+    
     <div className="App">
-
+<EnvContext.Provider
+        value={{
+          isSandbox: window.location.search.includes("sandbox"),
+          isTestnet: window.location.search.includes("testnet"),
+        }}>
       <SideBar show={show} setShow={setShow}/>
 
       <div className='overflow-auto w-100 text-white'>
@@ -34,7 +48,7 @@ function App() {
 
         </Routes>
       </div>
-    
+    </EnvContext.Provider>
     </div>
   )
 }
