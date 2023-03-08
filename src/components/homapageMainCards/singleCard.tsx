@@ -49,6 +49,7 @@ const SingleCard: FC<CardProps> = ({
         fluid
         className="border border-2 rounded-2 object-fit-cover"
         onClick={handleShow}
+        loading="lazy"
       />
       {/*beautiful font, max length and readable date informations*/}
 {/* 

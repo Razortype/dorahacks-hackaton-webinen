@@ -10,6 +10,11 @@ interface MainProps {}
 
 const Main: FC<MainProps> = ({}) => {
 
+  const [mainPageData, setMainPageData] = useState([])
+  useEffect(() => {
+    
+  })
+
   const [events, setEvents] = useState([])
   useEffect(() => {
     axios.get("http://razortype.pythonanywhere.com/api/events/all/?format=json")
@@ -25,7 +30,9 @@ const Main: FC<MainProps> = ({}) => {
       <UpperCards />
       <Container className="p-1 ">
         <Row className="pt-3 justify-content-center text-center">
-          <h1 style={{ color: "#22FA96" }}>Latest Events 🔥</h1>
+          <div id="lastest-header" className="events__header">
+            <h1>- Latest Events -</h1>
+          </div>
         </Row>
         <Row className="pt-1 pb-3 justify-content-around">
           {events
@@ -70,7 +77,9 @@ const Main: FC<MainProps> = ({}) => {
             )}
         </Row>
         <Row className="pt-3 justify-content-center text-center">
-          <h1 style={{ color: "#FC4191" }}>Hurry Up! ⏳</h1>
+          <div id="hurry-header" className="events__header">
+            <h1>Hurry Up &nbsp; &nbsp; &nbsp; !</h1>
+          </div>
         </Row>
         <Row className="p-3 justify-content-around">
           {events

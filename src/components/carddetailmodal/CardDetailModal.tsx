@@ -31,7 +31,7 @@ const CardDetailModal: FC<CardDetailModalProps> = ({NFTId, NFTAddress, tonPrice,
         dialogClassName="modal-50w"
         >
         <Modal.Body>
-            <Image src="ticket.png" fluid/>
+            <Image src="ticket.png" loading="lazy" fluid/>
 
             <div className="text-center my-3">
                 {returnNFTQR(NFTAddress.toString())}
