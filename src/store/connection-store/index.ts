@@ -1,6 +1,6 @@
 import { atom, selector } from "recoil";
 import { Wallet } from "@ton-defi.org/ton-connection";
-import { Providers } from "lib/env-profiles";
+import { Providers } from "../../lib/env-profiles";
 
 export interface ConnectionStateAtom {
   address: string | null;

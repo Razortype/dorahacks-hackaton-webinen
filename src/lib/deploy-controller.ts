@@ -118,6 +118,25 @@ class JettonDeployController {
     await waiter();
   }
 
+  async transferTon(
+    tonConnection: TonConnection,
+    toAddress: string,
+    amount: number
+    ){
+      const { address } = await tonConnection.connect();
+      const tc = await getClient();
+      const waiter = await waitForSeqno(
+        tc.openWalletFromAddress({
+          source: Address.parse(address),
+        }),
+      );
+      await tonConnection.requestTransaction({
+        to: Address.parse(toAddress),
+        value: toNano(amount.toString()),
+      });
+      await waiter();
+    }
+
   async transfer(
     tonConnection: TonConnection,
     amount: BN,

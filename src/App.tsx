@@ -8,6 +8,7 @@ import Welcome from './pages/testpage/TestPage'
 import Inventory from './pages/inventory/Inventory'
 import { Button } from 'react-bootstrap'
 import useConnectionStore from './store/connection-store/useConnectionStore'
+import ConnectPopup from "./components/connectPopup";
 
 export const EnvContext = createContext({
   isSandbox: false,
@@ -49,6 +50,7 @@ function App() {
         </Routes>
       </div>
     </EnvContext.Provider>
+    <ConnectPopup/>
     </div>
   )
 }

@@ -9,6 +9,7 @@ import { ListGroup, Row, Col, Container, Card, Button } from "react-bootstrap";
 import { isMobile } from "react-device-detect";
 
 import useConnectionStore from "../../store/connection-store/useConnectionStore";
+import WalletConnector from "../walletConnector/WalletConnector";
 
 
 interface SideBarProps {
@@ -103,7 +104,8 @@ const SideBar: FC<SideBarProps> = ({show, setShow}) => {
                         )
                     })}
                 </ListGroup>
-                <Button onClick={() => connectButtonFunction(Providers.OPEN_MASK)}>{address ? address:"Connect the wallet"}</Button>
+                {/* <Button onClick={() => connectButtonFunction(Providers.TONKEEPER)}>{address ? address:"Connect the wallet"}</Button> */}
+                <WalletConnector />
             </div>
         );
 
