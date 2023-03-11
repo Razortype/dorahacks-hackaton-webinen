@@ -11,9 +11,27 @@ import { Address, beginCell, Cell, toNano } from "ton";
 import BigNumber from "bignumber.js";
 import BN from "bn.js";
 import { zeroAddress } from "../../lib/utils";
+
+// import { getAllTickets, getTicketById, ticketIssuer } from "../../apiconnetion/ticketConnection";
+import { getAllEvents, getEventById, getMainPageEvents } from "../../apiconnetion/EventConnetion";
+import axios from "axios";
+
 interface WelcomeProps {}
 
+
+
 const Welcome: FC<WelcomeProps> = ({}) => {
+  const [events, setEvents] = useState<any[]>([]);
+  useEffect(() => {
+    getAllEvents()
+    .then((res) => setEvents(res.data))
+    .catch(() => console.log("Error occured while fetching events"));
+
+    getMainPageEvents()
+    .then((res) => console.log(res.data));
+
+  }, [])
+
   const { address } = useConnectionStore();
 
   const handleMyClick = async () => {
@@ -62,6 +80,21 @@ const Welcome: FC<WelcomeProps> = ({}) => {
       <button className="p-5 d-flex" onClick={handleMyClick}>
         Clickkkkkkk
       </button>
+
+      <div className="test-for-events">
+        <div className="test-for-events__title">Events TESTER</div>
+        {/* map events in div */}
+        <div className="test-for-events__events">
+          {events.map((event) => (
+            <div className="test-for-events__events__event">
+              <div className="test-for-events__events__event__title">
+                {event.name}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
     </div>
   );
 };
