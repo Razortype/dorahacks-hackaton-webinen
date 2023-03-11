@@ -1,44 +1,45 @@
 import { TonConnection, ChromeExtensionWalletProvider } from "@ton-defi.org/ton-connection";
-import { jettonDeployController } from "lib/deploy-controller";
-import { zeroAddress } from "lib/utils";
+import { jettonDeployController } from "../../lib/deploy-controller";
+import { zeroAddress } from "../../lib/utils";
 import { useRecoilState, useResetRecoilState } from "recoil";
-import WalletConnection from "services/wallet-connection";
+import WalletConnection from "../../services/wallet-connection";
 import { Address } from "ton";
 import { jettonStateAtom } from ".";
-import QuestiomMarkImg from "assets/icons/question.png";
+// import QuestiomMarkImg from "assets/icons/question.png";
 import { useCallback } from "react";
-import useNotification from "hooks/useNotification";
-import useConnectionStore from "store/connection-store/useConnectionStore";
-import { getUrlParam, isValidAddress } from "utils";
-import { useJettonAddress } from "hooks/useJettonAddress";
+// import useNotification from "../../lib/hooks/useNotification";
+import useConnectionStore from "../../store/connection-store/useConnectionStore";
+import { getUrlParam, isValidAddress } from "../../lib/utils";
+import { useJettonAddress } from "../../lib/hooks/useJettonAddress";
 
 function useJettonStore() {
   const [state, setState] = useRecoilState(jettonStateAtom);
   const reset = useResetRecoilState(jettonStateAtom);
-  const { showNotification } = useNotification();
+  // const { showNotification } = useNotification();
   const { address: connectedWalletAddress } = useConnectionStore();
-  const { jettonAddress } = useJettonAddress();
+  const  jettonAddress  = "EQCwzQdjuy48_hf64Pobm6JllPjvIcZNfBtT2tXpmNzRk7Fs";
 
   const getJettonDetails = useCallback(async () => {
     let queryAddress = getUrlParam("address");
 
-    if (queryAddress && !isValidAddress(queryAddress)) {
-      window.history.replaceState(null, "", window.location.pathname);
-      queryAddress = null;
-      showNotification("Invalid jetton address in query param", "error", undefined, 5000);
-    }
+    // if (queryAddress && !isValidAddress(queryAddress)) {
+    //   window.history.replaceState(null, "", window.location.pathname);
+    //   queryAddress = null;
+    //   // showNotification("Invalid jetton address in query param", "error", undefined, 5000);
+    // }
 
     const address = queryAddress || connectedWalletAddress;
     const isMyWallet = address ? address === connectedWalletAddress : false;
 
     reset();
 
-    if (!jettonAddress || !isValidAddress(jettonAddress)) {
-      showNotification("Invalid jetton address", "error");
-      return;
-    }
+    // if (!jettonAddress || !isValidAddress(jettonAddress)) {
+    //   // showNotification("Invalid jetton address", "error");
+    //   return;
+    // }
 
     const parsedJettonMaster = Address.parse(jettonAddress);
+    console.log("parsedJettonMaster", parsedJettonMaster);
 
     let connection;
 
@@ -59,6 +60,7 @@ function useJettonStore() {
         address ? Address.parse(address) : zeroAddress(),
         connection,
       );
+      console.log("result", result);
 
       if (!result) {
         console.log("empty");
@@ -104,7 +106,7 @@ function useJettonStore() {
           isJettonDeployerFaultyOnChainData: result.minter.isJettonDeployerFaultyOnChainData,
           persistenceType: result.minter.persistenceType,
           description: result.minter.metadata.description,
-          jettonImage: image ?? QuestiomMarkImg,
+          // jettonImage: image ?? QuestiomMarkImg,
           totalSupply: result.minter.totalSupply,
           name: result.minter.metadata.name,
           symbol: result.minter.metadata.symbol,
@@ -121,12 +123,12 @@ function useJettonStore() {
       });
     } catch (error) {
       if (error instanceof Error) {
-        showNotification(
-          !!error.message.match(/exit_code: (11|32)/g)
-            ? `Unable to query. This is probably not a Jetton Contract (${error.message})`
-            : error.message,
-          "error",
-        );
+        // showNotification(
+        //   !!error.message.match(/exit_code: (11|32)/g)
+        //     ? `Unable to query. This is probably not a Jetton Contract (${error.message})`
+        //     : error.message,
+        //   "error",
+        // );
       }
     } finally {
       setState((prevState) => ({
@@ -134,7 +136,7 @@ function useJettonStore() {
         jettonLoading: false,
       }));
     }
-  }, [setState, showNotification, connectedWalletAddress, jettonAddress, reset]);
+  }, [setState, connectedWalletAddress, jettonAddress, reset]);
 
   return {
     ...state,

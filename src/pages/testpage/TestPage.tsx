@@ -15,6 +15,7 @@ import { zeroAddress } from "../../lib/utils";
 // import { getAllTickets, getTicketById, ticketIssuer } from "../../apiconnetion/ticketConnection";
 import { getAllEvents, getEventById, getMainPageEvents } from "../../apiconnetion/EventConnetion";
 import axios from "axios";
+import useJettonStore from "../../store/jetton-store/useJettonStore";
 
 interface WelcomeProps {}
 
@@ -33,15 +34,30 @@ const Welcome: FC<WelcomeProps> = ({}) => {
   }, [])
 
   const { address } = useConnectionStore();
+  // const {jettonWalletAddress} = useJettonStore();
+ 
+  // console.log("jettonWalletAddress",jettonWalletAddress);
 
   const handleMyClick = async () => {
 
     try {
       const connection = WalletConnection.getConnection();
-        await jettonDeployController.transferTon(connection,
-          "EQCEZ7FGzA-ZrWaAhB7Fi5BA95pYomKh-qXUZfUet1O7Oxt2",
-          0.25
-        )
+        // await jettonDeployController.transferTon(connection,
+        //   "EQCEZ7FGzA-ZrWaAhB7Fi5BA95pYomKh-qXUZfUet1O7Oxt2",
+        //   0.25
+        // )
+        const result = await jettonDeployController.getJettonDetails(
+          Address.parse("EQCwzQdjuy48_hf64Pobm6JllPjvIcZNfBtT2tXpmNzRk7Fs"),
+          address ? Address.parse(address) : zeroAddress(),
+          connection,
+        );
+        console.log("result", result.jettonWallet?.jWalletAddress.toFriendly());
+         await jettonDeployController.transfer(connection,
+           new BN(13),
+           "EQATwsrbvkc0HTGU-u7v9SQO8B671e7MTiAbgcEa10zX3UpU",
+           address?.toString() || zeroAddress.toString(),
+           result.jettonWallet?.jWalletAddress.toFriendly() || zeroAddress.toString()
+           )
       console.log("succcesfful");
     } catch (e) {
       console.log("not succcesfful:", e);

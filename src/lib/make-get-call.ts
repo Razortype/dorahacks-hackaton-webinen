@@ -1,5 +1,6 @@
 import { Address, Cell, TonClient } from "ton";
 import BN from "bn.js";
+import { Buffer } from "buffer";
 
 function _prepareParams(params: any[] = []) {
   return params.map((p) => {

@@ -6,6 +6,7 @@ import minterHex from "./contracts/jetton-minter.compiled.json";
 // @ts-ignore
 import { Sha256 } from "@aws-crypto/sha256-js";
 import axios from "axios";
+import { Buffer } from "buffer";
 
 const ONCHAIN_CONTENT_PREFIX = 0x00;
 const OFFCHAIN_CONTENT_PREFIX = 0x01;
