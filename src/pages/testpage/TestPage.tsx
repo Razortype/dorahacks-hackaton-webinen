@@ -16,6 +16,7 @@ import { zeroAddress } from "../../lib/utils";
 import { getAllEvents, getEventById, getMainPageEvents } from "../../apiconnetion/EventConnetion";
 import axios from "axios";
 import useJettonStore from "../../store/jetton-store/useJettonStore";
+import {toast} from "react-toastify";
 
 interface WelcomeProps {}
 
@@ -87,6 +88,19 @@ const Welcome: FC<WelcomeProps> = ({}) => {
     console.log(result);
   };
 
+  const notify = () => {
+    toast.success('Jeton successfully purchased!', {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      });
+};
+
   return (
     <div>
       TEST PAGE
@@ -109,6 +123,7 @@ const Welcome: FC<WelcomeProps> = ({}) => {
             </div>
           ))}
         </div>
+        <button onClick={notify}>Notify!</button>
       </div>
 
     </div>
