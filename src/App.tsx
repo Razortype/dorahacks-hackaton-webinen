@@ -9,6 +9,9 @@ import Inventory from './pages/inventory/Inventory'
 import { Button } from 'react-bootstrap'
 import useConnectionStore from './store/connection-store/useConnectionStore'
 import ConnectPopup from "./components/connectPopup";
+import TicketIssuer from './pages/ticketIssuer/TicketIssuerPage'
+
+
 
 export const EnvContext = createContext({
   isSandbox: false,
@@ -16,8 +19,8 @@ export const EnvContext = createContext({
 });
 
 function App() {
-  const { connectOnLoad } = useConnectionStore();
-    const [show,setShow] = useState(true);
+  const { connectOnLoad, address } = useConnectionStore();
+    const [show, setShow] = useState(true);
 
     useEffect(() => {
         window.innerWidth < 576 && setShow(false);
@@ -46,6 +49,7 @@ function App() {
           <Route path='/inventory' element={ <Inventory /> } />
           <Route path='/memory' element={ <div>TEST</div> } />
           <Route path='/test' element={ <Welcome /> } />
+          <Route path='/ticket-issuer' element={ <TicketIssuer /> } />
 
         </Routes>
       </div>

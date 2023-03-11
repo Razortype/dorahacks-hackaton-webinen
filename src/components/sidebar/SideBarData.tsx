@@ -21,5 +21,10 @@ export const SideBarData = [
         title: "TEST",
         icon: <Icon.Tools />,
         link: "/test"
+    },
+    {
+        title: "Ticket Issuer",
+        icon: <Icon.Scissors />,
+        link: "/ticket-issuer"
     }
 ]

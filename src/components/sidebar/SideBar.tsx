@@ -11,10 +11,11 @@ import { isMobile } from "react-device-detect";
 import useConnectionStore from "../../store/connection-store/useConnectionStore";
 import WalletConnector from "../walletConnector/WalletConnector";
 
+import { checkIfUserIsEventCreator } from '../../apiconnetion/EventConnetion'
 
 interface SideBarProps {
     show:Boolean,
-    setShow:Function
+    setShow:Function,
 }
 
 const SideBar: FC<SideBarProps> = ({show, setShow}) => {
@@ -22,6 +23,7 @@ const SideBar: FC<SideBarProps> = ({show, setShow}) => {
     const [width,setWidth]= useState(window.innerWidth);
     const [sessionLink,setSessionLink]=useState<string | null>(null);
     const [selectedProvider, setSelectedProvider] = useState<Providers | null>(null);
+    const [creator, setCreator] = useState(false);
 
     const onSessionLinkCreated = (value: string) => {
         if (isMobile) {
@@ -33,6 +35,13 @@ const SideBar: FC<SideBarProps> = ({show, setShow}) => {
       };
 
     useEffect(() => {
+
+        if (!creator && address) {
+          checkIfUserIsEventCreator(address)
+          .then((res) => setCreator(res.data.exists))
+          .catch((e) => console.log(e));
+        }
+
         const handleWindowResize = () => {
           setWidth(window.innerWidth);
         };
@@ -92,20 +101,29 @@ const SideBar: FC<SideBarProps> = ({show, setShow}) => {
                 }
                 <Container className="text-center p-3">
                     <h1 className="sidebar__title pt-5 mt-5">WEBINEN</h1>
-                    <TonConnectButton className="mt-5"/>
+                    <div className="mt-3 mb-5">
+                      <WalletConnector />
+                    </div>
                 </Container>
     
-                <ListGroup className="sidemenu__navlinks p-3">
+                <ListGroup className="sidemenu__navlinks p-3 mt-5">
                     {SideBarData.map(({title, icon, link})=> {
+                      if (link != "/ticket-issuer") {
                         return (
-                            <ListGroup.Item action href={link} onClick={() => window.innerWidth < 576 && setShow(false)} className="nav__item bg-nav">
-                                {icon} {title}
-                            </ListGroup.Item>
+                          <ListGroup.Item action href={link} onClick={() => window.innerWidth < 576 && setShow(false)} className="nav__item bg-nav">
+                              {icon} {title}
+                          </ListGroup.Item>
                         )
+                      } else if (creator) {
+                        return (
+                          <ListGroup.Item action href={link} onClick={() => window.innerWidth < 576 && setShow(false)} className="nav__item bg-nav">
+                            {icon} {title}
+                          </ListGroup.Item>
+                        )
+                      }
                     })}
                 </ListGroup>
                 {/* <Button onClick={() => connectButtonFunction(Providers.TONKEEPER)}>{address ? address:"Connect the wallet"}</Button> */}
-                <WalletConnector />
             </div>
         );
 
