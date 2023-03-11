@@ -1,6 +1,11 @@
 import React, { FC } from "react";
 import { Button, Modal, Image, Row, Col, Table } from "react-bootstrap";
+import WalletConnection from "../../services/wallet-connection";
 import "./HomepageEventModal.css";
+import { jettonDeployController } from "../../lib/deploy-controller";
+import useConnectionStore from "../../store/connection-store/useConnectionStore";
+import WalletConnector from "../walletConnector/WalletConnector";
+
 
 interface HomepageEventModalProps {
   id: number;
@@ -37,6 +42,25 @@ const HomepageEventModal: FC<HomepageEventModalProps> = ({
   show,
   handleClose,
 }) => {
+
+  const [isLoading, setIsLoading] = React.useState(false);
+  const { address } = useConnectionStore();
+  console.log(address);
+
+  const handleGetTicket = async () => {
+    try {
+      setIsLoading(true);
+      const connection = WalletConnection.getConnection();
+      let tx = await jettonDeployController.transferTon(connection, "EQATwsrbvkc0HTGU-u7v9SQO8B671e7MTiAbgcEa10zX3UpU", 0.05);
+      console.log(tx);
+      console.log("succcesfful");
+      handleClose();
+    } catch (e) {
+      console.log("not succcesfful:", e);
+    }
+    setIsLoading(false);
+  };
+
   return (
     <Modal
       aria-labelledby="contained-modal-title-vcenter"
@@ -138,9 +162,11 @@ const HomepageEventModal: FC<HomepageEventModalProps> = ({
             {/*Ticket buy*/}
             <tr>
               <td className="d-flex justify-content-center">
-                <Button className="w-100 rounded" href={contract_address}>
+            {address==undefined ?   <WalletConnector/>:( isLoading ?  (<Button className="w-100 rounded"  disabled>
+                  Loading...
+                </Button>):(<Button className="w-100 rounded" onClick={handleGetTicket}>
                   Get a Ticket
-                </Button>
+                </Button>)) }
               </td>
             </tr>
           </tbody>
