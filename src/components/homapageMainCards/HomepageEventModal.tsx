@@ -5,6 +5,7 @@ import "./HomepageEventModal.css";
 import { jettonDeployController } from "../../lib/deploy-controller";
 import useConnectionStore from "../../store/connection-store/useConnectionStore";
 import WalletConnector from "../walletConnector/WalletConnector";
+import { toast } from "react-toastify";
 
 
 interface HomepageEventModalProps {
@@ -50,13 +51,42 @@ const HomepageEventModal: FC<HomepageEventModalProps> = ({
   const handleGetTicket = async () => {
     try {
       setIsLoading(true);
+      toast.info('Request Sent!', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
       const connection = WalletConnection.getConnection();
       let tx = await jettonDeployController.transferTon(connection, "EQATwsrbvkc0HTGU-u7v9SQO8B671e7MTiAbgcEa10zX3UpU", 0.05);
       console.log(tx);
       console.log("succcesfful");
+      toast.success('Jeton successfully purchased!', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
       handleClose();
     } catch (e) {
-      console.log("not succcesfful:", e);
+      toast.error('Error Occured!', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
     }
     setIsLoading(false);
   };
@@ -163,7 +193,7 @@ const HomepageEventModal: FC<HomepageEventModalProps> = ({
             <tr>
               <td className="d-flex justify-content-center">
             {address==undefined ?   <WalletConnector/>:( isLoading ?  (<Button className="w-100 rounded"  disabled>
-                  Loading...
+                  Pending Request...
                 </Button>):(<Button className="w-100 rounded" onClick={handleGetTicket}>
                   Get a Ticket
                 </Button>)) }

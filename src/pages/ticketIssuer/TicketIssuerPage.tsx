@@ -22,7 +22,7 @@ const TicketIssuer: FC<TicketIssuerProps> = (() => {
             })
             .catch((e) => console.log(e));
         }
-    }, [])
+    }, [address])
 
     return (
         <div className="">
