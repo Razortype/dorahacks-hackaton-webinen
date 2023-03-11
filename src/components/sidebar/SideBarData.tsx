@@ -4,18 +4,28 @@ import * as Icon from 'react-bootstrap-icons';
 export const SideBarData = [
     {
         title: "Home",
-        icon: <Icon.House />,
+        icon: <Icon.HouseFill />,
         link: "/"
     },
     {
         title: "Inventory",
-        icon: <Icon.TicketDetailed />,
+        icon: <Icon.BagCheckFill />,
         link: "/inventory"
     },
     {
-        title: "Memory",
-        icon: <Icon.Book />,
-        link: "/memory"
+        title: "How it works",
+        icon: <Icon.BookHalf />,
+        link: "/how-is-works"
+    },
+    {
+        title: "About",
+        icon: <Icon.InfoCircleFill />,
+        link: "/about"
+    },
+    {
+        title: "Contact",
+        icon: <Icon.ChatDotsFill /> ,
+        link: "/contact"
     },
     {
         title: "TEST",

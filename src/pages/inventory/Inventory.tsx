@@ -1,11 +1,11 @@
-import React, { FC } from "react";
+import React, { FC, useState, useEffect } from "react";
 import "./Inventory.css";
 
 import CustomCard from "../../components/customcard/CustomCard";
+import { getTicketForInventory } from "../../apiconnetion/TicketConnection";
+import useConnectionStore from "../../store/connection-store/useConnectionStore";
 
-interface InventoryProps {
-
-}
+interface InventoryProps {}
 
 const TicketData = [
     {
@@ -68,7 +68,18 @@ const TicketData = [
 ]
 
 const Inventory: FC<InventoryProps> = ({}) => {
-    
+
+    const { connectOnLoad, address } = useConnectionStore();
+
+    const [tickets, setTickets] = useState([]);
+    useEffect(() => {
+        if (address) {
+            getTicketForInventory(address)
+            .then((res) => {setTickets(res.data)})
+            .catch((e) => console.log(e));
+        }
+    }, [address])
+
     return (
         <div id="inventory-page" className="w-100">
 
@@ -91,7 +102,7 @@ const Inventory: FC<InventoryProps> = ({}) => {
             </div>
 
             <div className="activity__section container p-0 p-sm-5 text-dark">
-                {TicketData.map(({id, event, ipfs_url, nft_id, ton_price, used, expired, created_at, updated_at, attrs}, index) => {
+                {tickets.map(({id, event, ipfs_url, nft_id, ton_price, used, expired, created_at, updated_at, attrs}, index) => {
                     return (
                         <CustomCard
                         index={index}

@@ -51,6 +51,13 @@ function App() {
             <Route path='/test' element={<Welcome />} />
             <Route path='/ticket-issuer' element={<TicketIssuer />} />
 
+          <Route path='/' element={ <Main /> } />
+          <Route path='/inventory' element={ <Inventory /> } />
+          <Route path='/how-it-works' element={ <div>How It Works</div> } />
+          <Route path='/about' element={ <div>About</div> } />
+          <Route path='/contact' element={ <div>Contact</div> } />
+          <Route path='/test' element={ <Welcome /> } />
+          <Route path='/ticket-issuer' element={ <TicketIssuer /> } />
           </Routes>
         </div>
       </EnvContext.Provider>
