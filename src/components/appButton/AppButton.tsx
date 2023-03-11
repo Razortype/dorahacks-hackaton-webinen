@@ -18,6 +18,7 @@ const StyledButton = styled(LoadingButton)((props: StyledButtonProps) => ({
   gap: 8,
   padding: "0px 16px",
   margin: "auto",
+  backgroundColor:"#22204D",
   maxWidth: 160,
   width: props.width || "100%",
   height: props.height || "100%",
