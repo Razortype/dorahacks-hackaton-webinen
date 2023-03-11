@@ -45,7 +45,7 @@ const SingleCard: FC<CardProps> = ({
       className="single__card border border-1 m-2 p-0 border border-1 rounded-2"
     >
       <Image
-        src={event_image}
+        src={("http://razortype.pythonanywhere.com/"+event_image) || "ticket.png"}
         fluid
         className="border border-2 rounded-2 object-fit-cover"
         onClick={handleShow}
@@ -108,7 +108,7 @@ const SingleCard: FC<CardProps> = ({
       <HomepageEventModal
         id={id}
         name={name}
-        event_image={event_image}
+        event_image={("http://razortype.pythonanywhere.com/"+event_image) || "ticket.png"}
         description={description}
         capacity={capacity}
         location={location}
