@@ -35,8 +35,8 @@ export const ticketIssuer = async (ticket_id: number, wallet: string) => {
     return res;
 }
 
-export const createNewTicket = async (event_id: number, ton_price: number, owner_address:string ) {
-    const requestURL = `${BASE_URL}/ticket/create/${FORMAT_TYPE}`;
+export const createNewTicket = async (event_id: number, ton_price: number, owner_address:string ) => {
+    // const requestURL = `${BASE_URL}/ticket/create/${FORMAT_TYPE}`;
     // const res = await axios.post();
-    return res;
+    // return res;
 }
