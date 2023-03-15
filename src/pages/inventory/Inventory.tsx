@@ -7,6 +7,7 @@ import useConnectionStore from "../../store/connection-store/useConnectionStore"
 
 interface InventoryProps {}
 
+
 const TicketData = [
     {
         "id": 2,

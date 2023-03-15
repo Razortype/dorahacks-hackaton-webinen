@@ -6,7 +6,8 @@ import { jettonDeployController } from "../../lib/deploy-controller";
 import useConnectionStore from "../../store/connection-store/useConnectionStore";
 import WalletConnector from "../walletConnector/WalletConnector";
 import { toast } from "react-toastify";
-
+import { createNewTicket } from "../../apiconnetion/TicketConnection";
+import { zeroAddress } from "../../lib/utils";
 
 interface HomepageEventModalProps {
   id: number;
@@ -65,7 +66,8 @@ const HomepageEventModal: FC<HomepageEventModalProps> = ({
       let tx = await jettonDeployController.transferTon(connection, "EQATwsrbvkc0HTGU-u7v9SQO8B671e7MTiAbgcEa10zX3UpU", 0.05);
       console.log(tx);
       console.log("succcesfful");
-      toast.success('Jeton successfully purchased!', {
+      // const buyTicket = await createNewTicket(id, ticket_price.toString(), address?.toString() || zeroAddress.toString());
+      toast.success('Ticket successfully purchased!', {
         position: "bottom-right",
         autoClose: 5000,
         hideProgressBar: false,
