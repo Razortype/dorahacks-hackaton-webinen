@@ -1,0 +1,11 @@
+{
+    "name": "Sertab Erener Concert",
+    "description": "Sertab Erener Concert, First row, 1. Ticket. Location: https://goo.gl/maps/4xNoDxLmQaK3Piv46 Date:2023-06-07 20.00",
+    "image": "http://razortype.pythonanywhere.com//media/images/keEPPEyVrVcmP2fojOi7AA",
+    "ticket_id":"1",
+    "event_id":"4",
+    "content_url": "",
+    "date": "1686157200",
+    "duration":"135",
+    "attributes": []
+ }
