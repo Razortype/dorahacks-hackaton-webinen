@@ -43,6 +43,7 @@ When the ticket purchased, in inventory page your NFT will be demonstrated. Veri
 
 - Telegram bot implemented
     - users will be able to buy ticket directly from 
-
+    - easy to use with already exists platforms
 
 - Ticket marketplace created in Webinen site ecosystem
+    
