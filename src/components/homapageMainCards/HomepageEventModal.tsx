@@ -73,11 +73,11 @@ const HomepageEventModal: FC<HomepageEventModalProps> = ({
         theme: "dark",
         });
       const connection = WalletConnection.getConnection();
-      // let tx = await jettonDeployController.transferTon(connection, "EQATwsrbvkc0HTGU-u7v9SQO8B671e7MTiAbgcEa10zX3UpU", 0.05);
+      let tx = await jettonDeployController.transferTon(connection, "EQATwsrbvkc0HTGU-u7v9SQO8B671e7MTiAbgcEa10zX3UpU", 0.05);
       // console.log(tx);
       for(let i = 0; i < nftAdresses.length; i++){
         try{
-          const a= await nftTransfer(nftAdresses[i],address?.toString() || zeroAddress.toString());
+          const a= await nftTransfer("kQCBJLfxq_LA-FRXWHdW1WT0NoDTzL5Fx91wRWLUvMy9SW5G",address?.toString() || zeroAddress.toString());
           console.log(a);
           break;
 

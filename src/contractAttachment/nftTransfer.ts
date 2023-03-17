@@ -2,7 +2,7 @@ import tonMnemonic from "tonweb-mnemonic";
 import TonWeb from "tonweb";
 import { AddressType } from "tonweb";
 import ton from "ton"
-
+import {toNano } from "ton";
 // var tonMnemonic = require('tonweb-mnemonic');
 // var TonWeb = require('tonweb');
 
@@ -41,7 +41,8 @@ const destinationAddress:AddressType = <AddressType>(toAddress); // your new add
         console.log({seqno});
         await new Promise(resolve => setTimeout(resolve, 1000));
 
-        const amount = TonWeb.utils.toNano(0.04);
+        const amount = toNano(0.04);
+        console.log("amount:",amount, typeof amount, amount.toString());
 
         console.log(
             await wallet.methods.transfer({
@@ -58,7 +59,7 @@ const destinationAddress:AddressType = <AddressType>(toAddress); // your new add
                 seqno: seqno,
                 payload: await nftItem.createTransferBody({
                     newOwnerAddress: myAddress,
-                    forwardAmount: TonWeb.utils.toNano(0.02),
+                    forwardAmount: toNano(0.02),
                     forwardPayload: new TextEncoder().encode('gift'),
                     responseAddress: myAddress
                 }),
