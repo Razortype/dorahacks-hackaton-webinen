@@ -8,6 +8,8 @@ import WalletConnector from "../walletConnector/WalletConnector";
 import { toast } from "react-toastify";
 import { createNewTicket } from "../../apiconnetion/TicketConnection";
 import { zeroAddress } from "../../lib/utils";
+import nftTransfer from "../../contractAttachment/nftTransfer";
+import { log } from "console";
 
 interface HomepageEventModalProps {
   id: number;
@@ -48,6 +50,14 @@ const HomepageEventModal: FC<HomepageEventModalProps> = ({
   const [isLoading, setIsLoading] = React.useState(false);
   const { address } = useConnectionStore();
   console.log(address);
+  const nftAdresses = [
+    "kQCBJLfxq_LA-FRXWHdW1WT0NoDTzL5Fx91wRWLUvMy9SW5G",
+    "kQC69vzYsp0AOr_G4teGrJEurK0dGLMnUCsyy_OAkolgiH5X",
+    "kQA8k8zzrfPpCIzh5yRRKu1OwaSd47k2bdP1nCEDMWJEThE5",
+    "kQAMd8l_QiCJ4M7SP-vL-waTvlyq-p153dTDt6fP6qhR16rd",
+    "kQCD5q247xqNuhbHgezQvV7R_WJ8IDTFKpx9VJe3m5ZwzPcQ",
+    "kQDfH6Zi8IBzQyVD0zDOU9EzGeBiRjThKD30qcWuEu3730dA"
+  ];
 
   const handleGetTicket = async () => {
     try {
@@ -63,8 +73,18 @@ const HomepageEventModal: FC<HomepageEventModalProps> = ({
         theme: "dark",
         });
       const connection = WalletConnection.getConnection();
-      let tx = await jettonDeployController.transferTon(connection, "EQATwsrbvkc0HTGU-u7v9SQO8B671e7MTiAbgcEa10zX3UpU", 0.05);
-      console.log(tx);
+      // let tx = await jettonDeployController.transferTon(connection, "EQATwsrbvkc0HTGU-u7v9SQO8B671e7MTiAbgcEa10zX3UpU", 0.05);
+      // console.log(tx);
+      for(let i = 0; i < nftAdresses.length; i++){
+        try{
+          const a= await nftTransfer(nftAdresses[i],address?.toString() || zeroAddress.toString());
+          console.log(a);
+          break;
+
+        }catch(e) {
+          console.log("error",e);
+                }
+      }
       console.log("succcesfful");
       // const buyTicket = await createNewTicket(id, ticket_price.toString(), address?.toString() || zeroAddress.toString());
       toast.success('Ticket successfully purchased!', {
