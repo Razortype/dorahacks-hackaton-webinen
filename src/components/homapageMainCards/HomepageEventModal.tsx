@@ -51,7 +51,7 @@ const HomepageEventModal: FC<HomepageEventModalProps> = ({
   const { address } = useConnectionStore();
   console.log(address);
   const nftAdresses = [
-    "kQCBJLfxq_LA-FRXWHdW1WT0NoDTzL5Fx91wRWLUvMy9SW5G",
+    // "kQCBJLfxq_LA-FRXWHdW1WT0NoDTzL5Fx91wRWLUvMy9SW5G",
     "kQC69vzYsp0AOr_G4teGrJEurK0dGLMnUCsyy_OAkolgiH5X",
     "kQA8k8zzrfPpCIzh5yRRKu1OwaSd47k2bdP1nCEDMWJEThE5",
     "kQAMd8l_QiCJ4M7SP-vL-waTvlyq-p153dTDt6fP6qhR16rd",
