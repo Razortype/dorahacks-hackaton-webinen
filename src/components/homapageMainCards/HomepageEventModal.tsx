@@ -77,15 +77,16 @@ const HomepageEventModal: FC<HomepageEventModalProps> = ({
       // console.log(tx);
       for(let i = 0; i < nftAdresses.length; i++){
         try{
-          const a= await nftTransfer("kQCBJLfxq_LA-FRXWHdW1WT0NoDTzL5Fx91wRWLUvMy9SW5G",address?.toString() || zeroAddress.toString());
+          const a= await nftTransfer(nftAdresses[i],address?.toString() || zeroAddress.toString());
           console.log(a);
+          console.log("succcesfful");
           break;
 
         }catch(e) {
           console.log("error",e);
                 }
       }
-      console.log("succcesfful");
+      
       // const buyTicket = await createNewTicket(id, ticket_price.toString(), address?.toString() || zeroAddress.toString());
       toast.success('Ticket successfully purchased!', {
         position: "bottom-right",
