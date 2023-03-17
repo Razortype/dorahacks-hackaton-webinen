@@ -7,7 +7,7 @@ import ton from "ton"
 // var TonWeb = require('tonweb');
 
 export default async function sendNft(myNftAdress:string, toAddress:String){
-const mnemonic = 'master brown strategy crouch olympic artefact rib recipe crumble loyal powder ribbon potato palm connect type female position test useful nasty brother all office'; // 24-word passphrase
+
 const walletVersion = 'v3R2'; // v3R2, v4R2, etc.. from tonscan.org
 const nftAddresses = [
     myNftAdress // comma-separated NFT addresses in '',""
@@ -19,13 +19,17 @@ const destinationAddress:AddressType = <AddressType>(toAddress); // your new add
 
     const {NftItem} = TonWeb.token.nft;
     const tonweb = new TonWeb(new TonWeb.HttpProvider('https://testnet.toncenter.com/api/v2/jsonRPC'));
-    const mnemonicParts = mnemonic.split(' ')
-    const keyPair = await tonMnemonic.mnemonicToKeyPair(mnemonicParts);
-    console.log(keyPair);
+    // const keyPair = await tonMnemonic.mnemonicToKeyPair(mnemonicParts);
+    // console.log(keyPair);
     
     const WalletClass = tonweb.wallet.all[walletVersion];
     const wallet = new WalletClass(tonweb.provider, {
-        publicKey: keyPair.publicKey,
+        publicKey: new Uint8Array([
+            62, 101,  63, 201, 231,  56, 182, 254,
+           199,  38, 244, 239, 121, 218, 113,  74,
+           210, 186, 118, 171,  40, 160,  16, 105,
+           125, 112,   6, 163, 210,  59, 162,  63
+         ]),
         wc: 0
     });
     transfer(nftAddresses[0]);
@@ -41,7 +45,14 @@ const destinationAddress:AddressType = <AddressType>(toAddress); // your new add
 
         console.log(
             await wallet.methods.transfer({
-                secretKey: keyPair.secretKey,
+                secretKey:new Uint8Array([
+                    182,  46, 225, 236, 209,  92,  21,  42, 188, 214, 239,
+                    242, 217,  80, 242,  73,  89, 148,  56, 193, 150, 117,
+                     51, 205,   8,  98, 153, 179,   0, 248, 142, 208,  62,
+                    101,  63, 201, 231,  56, 182, 254, 199,  38, 244, 239,
+                    121, 218, 113,  74, 210, 186, 118, 171,  40, 160,  16,
+                    105, 125, 112,   6, 163, 210,  59, 162,  63
+                  ]),
                 toAddress: <AddressType>(toAddress),
                 amount: amount,
                 seqno: seqno,
